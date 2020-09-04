@@ -10,3 +10,7 @@ data = keras.datasets.fashion_mnist
 
 class_names = ['T-shirt/top', 'Trouser', 'Pullover', 'Dress', 'Coat',
                'Sandal', 'Shirt', 'Sneaker', 'Bag', 'Ankle boot']
+
+#Making data smaller
+train_images = train_images/255.0
+test_images = train_images/255.0
