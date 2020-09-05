@@ -6,8 +6,6 @@ data = keras.datasets.imdb
 
 (train_data, train_labels), (test_data, test_labels) = data.load_data(num_words=10000) #Only take the words that are 10,000 most frequent
 
-print(train_data[0])
-
 word_index = data.get_word_index()
 
 word_index = {k:(v+3) for k, v in word_index.items()}
@@ -25,4 +23,9 @@ test_data = keras.preprocessing.sequence.pad_sequences(test_data, value=word_ind
 def decode_review(text):
     return " ".join([reverse_word_index.get(i, "?") for i in text])
 
-print(decode_review(test_data[0]))
+#Defining Model:
+model = keras.Sequential()
+model.add(keras.layers.Embedding(10000, 16))
+model.add(keras.layers.GlobalAveragePooling1D())
+model.add(keras.layers.Dense(16, activation="relu"))
+model.add(keras.layers.Dense(1, activation="sigmoid"))
